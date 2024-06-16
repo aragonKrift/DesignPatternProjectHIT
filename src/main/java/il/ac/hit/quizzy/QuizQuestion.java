@@ -26,6 +26,7 @@ public class QuizQuestion implements IQuizQuestion {
     public List<Answer> getAnswers() {
         return answers;
     }
+
     public static class Builder implements IQuizQuestionBuilder {
         private String title;
         private String question;
