@@ -1,6 +1,6 @@
 package il.ac.hit.quizzy;
 
-public class Answer {
+public class Answer implements IAnswer {
     private final String text;
     private final boolean correct;
 

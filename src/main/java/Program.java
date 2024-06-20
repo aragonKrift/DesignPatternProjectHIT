@@ -40,10 +40,9 @@ public class Program {
         quiz.addQuestion(question1);
         quiz.addQuestion(question2);
         //saving quiz to file and read it back
-//        IQuizFilesDAO dao = SimpleCSVQuizFilesDAO.getInstance();
-//        dao.saveQuizToFile(quiz,"quiz1.data");
-//        IQuiz loadedQuiz = dao.loadQuizFromFile("quiz1.data");
-//        loadedQuiz.start();
-        quiz.start();
+        IQuizFilesDAO dao = SimpleCSVQuizFilesDAO.getInstance();
+        dao.saveQuizToFile(quiz,"quiz1.data");
+        IQuiz loadedQuiz = dao.loadQuizFromFile("quiz1.data");
+        loadedQuiz.start();
     }
 }

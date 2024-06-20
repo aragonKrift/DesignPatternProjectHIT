@@ -25,7 +25,7 @@ public class GUIQuiz implements IQuiz {
     @Override
     public void start() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        showQuestion(currentQuestionIndex);
+        showQuestions(currentQuestionIndex);
         frame.setSize(400, 300);
         frame.setVisible(true);
     }
@@ -45,7 +45,7 @@ public class GUIQuiz implements IQuiz {
         this.questions.add(question);
     }
 
-    private void showQuestion(int index) {
+    private void showQuestions(int index) {
         if (index >= questions.size()) {
             showResults();
             return;
@@ -95,7 +95,7 @@ public class GUIQuiz implements IQuiz {
                 score++;
             }
             currentQuestionIndex++;
-            showQuestion(currentQuestionIndex);
+            showQuestions(currentQuestionIndex);
         });
         return submitButton;
     }
