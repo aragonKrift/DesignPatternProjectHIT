@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class TerminalQuiz implements IQuiz {
     private String name;
@@ -19,7 +18,7 @@ public class TerminalQuiz implements IQuiz {
     public void start() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Starting quiz: " + name);
+            System.out.println(name);
             int score = 0;
             int total = questions.size();
 
@@ -47,8 +46,8 @@ public class TerminalQuiz implements IQuiz {
     }
 
     @Override
-    public void setName(String text) {
-        this.name = text;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class GUIQuiz implements IQuiz {
         this.questions = new ArrayList<>();
         this.score = 0;
         this.currentQuestionIndex = 0;
-        this.frame = new JFrame("Quiz Application");
+        this.frame = new JFrame();
     }
     @Override
     public void start() {
@@ -31,8 +31,9 @@ public class GUIQuiz implements IQuiz {
     }
 
     @Override
-    public void setName(String text) {
-        this.name = text;
+    public void setName(String name) {
+        this.name = name;
+        this.frame.setTitle(name);
     }
 
     @Override

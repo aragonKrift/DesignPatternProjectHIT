@@ -4,10 +4,6 @@ public class Program {
 
     /*
     Need to implement:
-    - QuizException
-    - GUIQuiz (need to implement methods, need to use library like swift)
-    - TerminalQuiz
-    - SimpleCSVQuizFilesDAO (need to implement methods, add more methods if needed)
     - Unit Tests
      */
 
@@ -16,6 +12,7 @@ public class Program {
         QuizFactory factory = new QuizFactory();
         IQuiz quiz = factory.createQuiz(QuizType.GUI);
         quiz.setName("Quiz Demo");
+
         //creating 1st question
         IQuizQuestionBuilder builder1 = new QuizQuestion.Builder();
         builder1.setTitle("We Love Canada");
@@ -26,6 +23,7 @@ public class Program {
         builder1.addAnswer("Canada starts with the letter ‘D’.",false);
         builder1.addAnswer("Canada starts with the letter ‘E’.",false);
         IQuizQuestion question1 = builder1.create();
+
         //creating 2nd question
         IQuizQuestionBuilder builder2 = new QuizQuestion.Builder();
         builder2.setTitle("We Love Australia");
@@ -36,13 +34,17 @@ public class Program {
         builder2.addAnswer("Australia starts with the letter ‘D’.",false);
         builder2.addAnswer("Australia starts with the letter ‘E’.",false);
         IQuizQuestion question2 = builder2.create();
+
         //adding questions to quiz
         quiz.addQuestion(question1);
         quiz.addQuestion(question2);
+
         //saving quiz to file and read it back
         IQuizFilesDAO dao = SimpleCSVQuizFilesDAO.getInstance();
         dao.saveQuizToFile(quiz,"quiz1.data");
         IQuiz loadedQuiz = dao.loadQuizFromFile("quiz1.data");
+
+        //start the quiz
         loadedQuiz.start();
     }
 }

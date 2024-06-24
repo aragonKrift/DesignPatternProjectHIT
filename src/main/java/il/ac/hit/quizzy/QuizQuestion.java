@@ -3,12 +3,23 @@ package il.ac.hit.quizzy;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class representing a quiz question.
+ * Implements the IQuizQuestion interface to provide the title, text, and possible answers of a quiz question.
+ */
 public class QuizQuestion implements IQuizQuestion {
 
     private final String title;
     private final String question;
     private final List<Answer> answers;
 
+    /**
+     * Constructs a new QuizQuestion with the specified title, question text, and answers.
+     *
+     * @param title the title of the quiz question.
+     * @param question the text of the quiz question.
+     * @param answers the list of possible answers for the quiz question.
+     */
     protected QuizQuestion(String title, String question, List<Answer> answers) {
         this.title = title;
         this.question = question;
@@ -32,9 +43,14 @@ public class QuizQuestion implements IQuizQuestion {
         private String question;
         private final List<Answer> answers;
 
+        /**
+         * Constructs a new Builder instance.
+         * Initializes an empty list of answers.
+         */
         public Builder() {
             answers = new ArrayList<>();
         }
+
         @Override
         public void setTitle(String text) {
             this.title = text;

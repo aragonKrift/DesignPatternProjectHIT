@@ -2,11 +2,24 @@ package il.ac.hit.quizzy;
 
 import java.io.*;
 
+/**
+ * Implementation of the IQuizFilesDAO interface for saving and loading quizzes to/from CSV files.
+ * This singleton class provides methods to save a quiz to a file and load a quiz from a file.
+ */
 public class SimpleCSVQuizFilesDAO implements IQuizFilesDAO {
     private static SimpleCSVQuizFilesDAO instance;
 
+    /**
+     * Private constructor to prevent instantiation.
+     */
     private SimpleCSVQuizFilesDAO() {}
 
+    /**
+     * Returns the singleton instance of SimpleCSVQuizFilesDAO.
+     * If the instance is null, it creates a new instance.
+     *
+     * @return the singleton instance of SimpleCSVQuizFilesDAO.
+     */
     public static IQuizFilesDAO getInstance() {
         if(instance == null) {
             instance = new SimpleCSVQuizFilesDAO();
@@ -20,8 +33,7 @@ public class SimpleCSVQuizFilesDAO implements IQuizFilesDAO {
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(quiz);
         } catch (IOException e) {
-//            throw new QuizException("Can't save quiz to file", e);
-            e.printStackTrace();
+            throw new QuizException("Can't save quiz to file", e);
         }
     }
 
@@ -31,9 +43,7 @@ public class SimpleCSVQuizFilesDAO implements IQuizFilesDAO {
             ObjectInputStream ois = new ObjectInputStream(fin)) {
             return (IQuiz) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-//            throw new QuizException("Can't load quiz from file", e);
-            e.printStackTrace();
+            throw new QuizException("Can't load quiz from file", e);
         }
-        return null;
     }
 }
