@@ -17,7 +17,11 @@ import java.util.List;
  */
 public class TerminalQuiz implements IQuiz {
     private String name;
-    private List<IQuizQuestion> questions = new ArrayList<>();
+    private List<IQuizQuestion> questions;
+
+    public TerminalQuiz() {
+        this.questions = new ArrayList<>();
+    }
 
     @Override
     public void start() throws QuizException {
