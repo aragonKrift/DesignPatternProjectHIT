@@ -1,6 +1,6 @@
 package il.ac.hit.quizzy;
 
-import java.io.Serializable;
+import il.ac.hit.quizzy.exceptions.QuizException;
 
 /**
  * Interface for implementing a DAO object for saving quizzes to a .data file.

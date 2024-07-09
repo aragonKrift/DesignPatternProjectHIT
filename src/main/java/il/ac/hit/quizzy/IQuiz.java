@@ -1,6 +1,9 @@
 package il.ac.hit.quizzy;
 
+import il.ac.hit.quizzy.exceptions.QuizException;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Interface for implementing a quiz.
@@ -12,7 +15,7 @@ public interface IQuiz extends Cloneable, Serializable {
     /**
      * Starts the quiz and prints the final score.
      */
-    void start();
+    void start() throws QuizException;
 
     /**
      * Sets the quiz title.
@@ -34,6 +37,13 @@ public interface IQuiz extends Cloneable, Serializable {
      * @param question the IQuizQuestion instance to be added.
      */
     void addQuestion(IQuizQuestion question);
+
+    /**
+     * Gets the quiz questions as a list. For testing purposes only.
+     *
+     * @return list of the quiz's questions
+     */
+    List<IQuizQuestion> getQuestions();
 
     /**
      * Clones the quiz according to the prototype design pattern.

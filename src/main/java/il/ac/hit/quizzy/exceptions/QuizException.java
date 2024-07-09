@@ -1,4 +1,4 @@
-package il.ac.hit.quizzy;
+package il.ac.hit.quizzy.exceptions;
 
 /**
  * Exception class for handling quiz-related errors.

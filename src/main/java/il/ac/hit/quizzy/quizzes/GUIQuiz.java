@@ -9,6 +9,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A GUI based quiz.
+ */
 public class GUIQuiz implements IQuiz {
     private String name;
     private List<IQuizQuestion> questions;
@@ -22,6 +25,7 @@ public class GUIQuiz implements IQuiz {
         this.currentQuestionIndex = 0;
         this.frame = new JFrame();
     }
+
     @Override
     public void start() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,6 +48,11 @@ public class GUIQuiz implements IQuiz {
     @Override
     public void addQuestion(IQuizQuestion question) {
         this.questions.add(question);
+    }
+
+    @Override
+    public List<IQuizQuestion> getQuestions() {
+        return questions;
     }
 
     private void showQuestions(int index) {

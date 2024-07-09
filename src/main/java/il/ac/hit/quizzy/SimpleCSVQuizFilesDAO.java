@@ -1,9 +1,11 @@
 package il.ac.hit.quizzy;
 
+import il.ac.hit.quizzy.exceptions.QuizException;
+
 import java.io.*;
 
 /**
- * Implementation of the IQuizFilesDAO interface for saving and loading quizzes to/from CSV files.
+ * Implementation of the IQuizFilesDAO interface for saving and loading quizzes to/from .data files.
  * This singleton class provides methods to save a quiz to a file and load a quiz from a file.
  */
 public class SimpleCSVQuizFilesDAO implements IQuizFilesDAO {

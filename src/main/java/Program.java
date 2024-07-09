@@ -1,4 +1,5 @@
 import il.ac.hit.quizzy.*;
+import il.ac.hit.quizzy.exceptions.QuizException;
 
 public class Program {
 
@@ -8,9 +9,9 @@ public class Program {
      */
 
     public static void main(String[] args) throws QuizException {
-        //creating question
+        //creating quiz
         QuizFactory factory = new QuizFactory();
-        IQuiz quiz = factory.createQuiz(QuizType.GUI);
+        IQuiz quiz = factory.createQuiz(QuizType.TERMINAL);
         quiz.setName("Quiz Demo");
 
         //creating 1st question
