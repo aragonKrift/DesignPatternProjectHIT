@@ -17,7 +17,7 @@ public class GUIQuiz implements IQuiz {
     private List<IQuizQuestion> questions;
     private int score;
     private int currentQuestionIndex;
-    private JFrame frame;
+    private final JFrame frame;
 
     public GUIQuiz() {
         this.questions = new ArrayList<>();
@@ -28,6 +28,7 @@ public class GUIQuiz implements IQuiz {
 
     @Override
     public void start() {
+        //initialize the GUI window
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         showQuestions(currentQuestionIndex);
         frame.setSize(400, 300);
@@ -56,11 +57,13 @@ public class GUIQuiz implements IQuiz {
     }
 
     private void showQuestions(int index) {
+        //if we reach the end of the quiz, show the score
         if (index >= questions.size()) {
             showResults();
             return;
         }
 
+        //show the current question
         IQuizQuestion question = questions.get(index);
         frame.getContentPane().removeAll();
         frame.setLayout(new BorderLayout());
@@ -71,6 +74,7 @@ public class GUIQuiz implements IQuiz {
         JLabel questionLabel = new JLabel(question.getQuestionText());
         questionPanel.add(questionLabel);
 
+        //add radio button for the user to choose an answer
         ButtonGroup group = new ButtonGroup();
         List<Answer> options = question.getAnswers();
         List<JRadioButton> radioButtons = new ArrayList<>();
@@ -83,6 +87,7 @@ public class GUIQuiz implements IQuiz {
             questionPanel.add(radioButton);
         }
 
+        //submit answer button
         JButton submitButton = getJButton(radioButtons, question);
 
         frame.add(questionPanel, BorderLayout.CENTER);
@@ -101,6 +106,8 @@ public class GUIQuiz implements IQuiz {
                     break;
                 }
             }
+
+            //if the answer is correct, add a point to the score and move to the next question
             if (selectedAnswerIndex != -1 && question.getAnswers().get(selectedAnswerIndex).isCorrect()) {
                 score++;
             }
@@ -125,6 +132,7 @@ public class GUIQuiz implements IQuiz {
     @Override
     public IQuiz clone() {
         try {
+            //return a prototype of the quiz with the questions
             GUIQuiz clone = (GUIQuiz) super.clone();
             clone.questions = new ArrayList<>(this.questions);
             return clone;

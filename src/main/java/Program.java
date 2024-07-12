@@ -3,15 +3,10 @@ import il.ac.hit.quizzy.exceptions.QuizException;
 
 public class Program {
 
-    /*
-    Need to implement:
-    - Unit Tests
-     */
-
     public static void main(String[] args) throws QuizException {
         //creating quiz
         QuizFactory factory = new QuizFactory();
-        IQuiz quiz = factory.createQuiz(QuizType.TERMINAL);
+        IQuiz quiz = factory.createQuiz(QuizType.GUI);
         quiz.setName("Quiz Demo");
 
         //creating 1st question

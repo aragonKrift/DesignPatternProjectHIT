@@ -25,35 +25,31 @@ public class TerminalQuiz implements IQuiz {
 
     @Override
     public void start() throws QuizException {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println(name);
-            int score = 0;
-            int total = questions.size();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println(name);
+        int score = 0;
+        int total = questions.size();
 
-            // Loop through all questions
-            for (IQuizQuestion question : questions) {
-                showQuestionTitleAndText(question);
-                showAnswers(question);
+        // Loop through all questions
+        for (IQuizQuestion question : questions) {
+            showQuestionTitleAndText(question);
+            showAnswers(question);
 
-                // Get the user's choice
-                int choiceInNumber = getChoiceFromUser(reader);
+            // Get the user's choice
+            int choiceInNumber = getChoiceFromUser(reader);
 
-                // Check if the choice is valid
-                if(choiceInNumber < 1 || choiceInNumber > question.getAnswers().size()) {
-                    throw new InvalidChoiceException("Invalid choice: " + choiceInNumber);
-                }
-
-                // Check if the choice is correct
-                if (question.getAnswers().get(choiceInNumber - 1).isCorrect()) {
-                    score++;
-                }
+            // Check if the choice is valid
+            if(choiceInNumber < 1 || choiceInNumber > question.getAnswers().size()) {
+                throw new InvalidChoiceException("Invalid choice: " + choiceInNumber);
             }
 
-            printFinalScore(score, total);
-        } catch (IOException e) {
-            throw new QuizException("Error reading input", e);
+            // Check if the choice is correct
+            if (question.getAnswers().get(choiceInNumber - 1).isCorrect()) {
+                score++;
+            }
         }
+
+        printFinalScore(score, total);
     }
 
     /**
@@ -83,12 +79,16 @@ public class TerminalQuiz implements IQuiz {
      *
      * @param reader the BufferedReader to read user input from
      * @return the user's choice as an integer
-     * @throws IOException if an I/O error occurs
+     * @throws QuizException if an I/O error occurs
      */
-    private int getChoiceFromUser(BufferedReader reader) throws IOException {
-        System.out.println("Your choice: ");
-        String choice = reader.readLine();
-        return Integer.parseInt(choice);
+    private int getChoiceFromUser(BufferedReader reader) throws QuizException {
+        try {
+            System.out.println("Your choice: ");
+            String choice = reader.readLine();
+            return Integer.parseInt(choice);
+        } catch (IOException e) {
+            throw new QuizException("Error getting your choice", e);
+        }
     }
 
     /**
@@ -124,6 +124,7 @@ public class TerminalQuiz implements IQuiz {
     @Override
     public IQuiz clone() {
         try {
+            //return a prototype of the quiz with the questions
             TerminalQuiz clone = (TerminalQuiz) super.clone();
             clone.questions = new ArrayList<>(this.questions);
             return clone;

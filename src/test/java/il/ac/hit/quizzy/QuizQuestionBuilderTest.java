@@ -10,15 +10,16 @@ class QuizQuestionBuilderTest {
 
     @Test
     void testQuizQuestionBuilder() {
-        QuizQuestion.Builder builder = new QuizQuestion.Builder();
+        //build a question
+        IQuizQuestionBuilder builder = new QuizQuestion.Builder();
         builder.setTitle("Math Quiz");
         builder.setQuestion("What is 2 + 2?");
         builder.addAnswer("3", false);
         builder.addAnswer("4", true);
         builder.addAnswer("5", false);
-
         IQuizQuestion quizQuestion = builder.create();
 
+        //compare the quiz properties to the expected results
         assertEquals("Math Quiz", quizQuestion.getTitle());
 
         assertEquals("What is 2 + 2?", quizQuestion.getQuestionText());
